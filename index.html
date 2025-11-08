@@ -1,134 +1,173 @@
+
 <!DOCTYPE html>
 <html lang="no">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SWIX Smøring & Glider Guide</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snøfall & Smøring Guide</title>
+  <link rel="icon" href="bilder/app-ikon.png"> <!-- App-ikon -->
 
-<style>
+  <style>
+    /* ================== Generell stil ================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     body {
-        background-color: #111;
-        font-family: Arial, sans-serif;
-        color: white;
-        text-align: center;
-        padding: 30px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f8ff;
+      color: #333;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
-    h1 {
-        color: #ff3b3b;
-        letter-spacing: 1px;
-        font-weight: 700;
-        margin-bottom: 25px;
+    /* ================== Header ================== */
+    header {
+      background-color: #005f99;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header img {
+      height: 50px;
+    }
+    nav a {
+      margin-left: 1.5rem;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #ffd700;
     }
 
-    select, button {
-        width: 250px;
-        padding: 12px;
-        margin: 8px;
-        background: #222;
-        border: 1px solid #ff3b3b;
-        border-radius: 6px;
-        color: white;
-        font-size: 15px;
+    /* ================== Hero ================== */
+    .hero {
+      background: url('bilder/snofall.jpg') no-repeat center center/cover;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 1px 1px 8px #000;
+      font-size: 2rem;
+      font-weight: bold;
     }
 
-    button {
-        cursor: pointer;
-        background: #ff3b3b;
-        font-weight: bold;
-        transition: 0.25s;
+    /* ================== Seksjoner ================== */
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+    section {
+      margin-bottom: 3rem;
+    }
+    h2 {
+      color: #005f99;
+      margin-bottom: 1rem;
+    }
+    .image-container {
+      text-align: center;
+      margin: 1rem 0;
+    }
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    .image-container img:hover {
+      transform: scale(1.05);
+    }
+    .caption {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
     }
 
-    button:hover {
-        background: #ff6b6b;
+    /* ================== Karusell ================== */
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding-bottom: 1rem;
+    }
+    .carousel img {
+      flex: 0 0 auto;
+      width: 250px;
+      border-radius: 8px;
     }
 
-    .result-box {
-        margin-top: 35px;
-        padding: 18px;
-        background: #1a1a1a;
-        border-left: 5px solid #ff3b3b;
-        width: 350px;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: left;
-        font-size: 18px;
-        border-radius: 4px;
-        display: none;
+    /* ================== Footer ================== */
+    footer {
+      background-color: #005f99;
+      color: white;
+      text-align: center;
+      padding: 1rem;
     }
-</style>
-
+  </style>
 </head>
 <body>
 
-<h1>SWIX SMØRING & GLIDER GUIDE</h1>
+  <!-- Header med logo og nav -->
+  <header>
+    <img src="bilder/swix-logo.png" alt="Swix Logo">
+    <nav>
+      <a href="#hero">Hjem</a>
+      <a href="#smoring">Smøring</a>
+      <a href="#karusell">Bilder</a>
+    </nav>
+  </header>
 
-<select id="skitype">
-    <option>Klassisk</option>
-    <option>Skate</option>
-</select><br>
+  <!-- Hero -->
+  <div class="hero" id="hero">
+    Snøfall & Smøring Guide
+  </div>
 
-<select id="temp">
-    <option>Under -12°C</option>
-    <option>-12°C til -6°C</option>
-    <option>-6°C til -1°C</option>
-    <option>-1°C til +3°C</option>
-    <option>Over +3°C</option>
-</select><br>
+  <main>
+    <!-- Seksjon: Smøring -->
+    <section id="smoring">
+      <h2>Smøring av utstyr</h2>
 
-<select id="sno">
-    <option>Fersk snø</option>
-    <option>Kompakt snø</option>
-    <option>Iset/hard snø</option>
-</select><br>
+      <div class="image-container">
+        <img src="bilder/motorolje.jpg" alt="Motorolje">
+        <div class="caption">Hell motorolje i motoren etter produsentens anbefaling.</div>
+      </div>
 
-<button onclick="velg()">Velg smøring & glider</button>
+      <div class="image-container">
+        <img src="bilder/kjedeolje.jpg" alt="Kjedeolje">
+        <div class="caption">Smør kjedet regelmessig for å unngå slitasje.</div>
+      </div>
 
-<div class="result-box" id="result"></div>
+      <div class="image-container">
+        <img src="bilder/fett.jpg" alt="Fett på ledd">
+        <div class="caption">Bruk fett på bevegelige deler som aksler og ledd.</div>
+      </div>
+    </section>
 
-<script>
-function velg() {
-    let skitype = document.getElementById("skitype").value;
-    let temp = document.getElementById("temp").value;
-    let sno = document.getElementById("sno").value;
+    <!-- Seksjon: Karusell -->
+    <section id="karusell">
+      <h2>Bildekarusell</h2>
+      <div class="carousel">
+        <img src="bilder/snofall1.jpg" alt="Snøfall 1">
+        <img src="bilder/snofall2.jpg" alt="Snøfall 2">
+        <img src="bilder/snofall3.jpg" alt="Snøfall 3">
+        <img src="bilder/snofall4.jpg" alt="Snøfall 4">
+      </div>
+    </section>
+  </main>
 
-    // Swix Glider
-    let glider = {
-        "Under -12°C": "Swix PS5 (Turkis)",
-        "-12°C til -6°C": "Swix PS6 (Blå)",
-        "-6°C til -1°C": "Swix PS7 (Fiolett)",
-        "-1°C til +3°C": "Swix PS8 (Rød)",
-        "Over +3°C": "Swix PS10 (Gul)"
-    }[temp];
-
-    let smor;
-
-    if (skitype === "Skate") {
-        smor = "Ingen feste nødvendig (Skate)";
-    } else {
-        if (sno === "Fersk snø") {
-            if (temp === "Under -12°C" || temp === "-12°C til -6°C") smor = "Swix V40 Blå Extra";
-            else if (temp === "-6°C til -1°C") smor = "Swix V45 Violet Special";
-            else smor = "Swix V55 Red Special";
-        } 
-        else if (sno === "Kompakt snø") {
-            if (temp === "Under -12°C" || temp === "-12°C til -6°C") smor = "Swix V30 Blå";
-            else if (temp === "-6°C til -1°C") smor = "Swix V45 Violet Special";
-            else smor = "Swix KX35 Violet Klister";
-        } 
-        else {
-            if (temp === "Under -12°C" || temp === "-12°C til -6°C") smor = "Swix KX20 Baseklister";
-            else if (temp === "-6°C til -1°C") smor = "Swix KX30 Ice Klister";
-            else smor = "Swix KX75 Red Ice Klister";
-        }
-    }
-
-    document.getElementById("result").style.display = "block";
-    document.getElementById("result").innerHTML =
-        "<strong>Smøring:</strong> " + smor + "<br>" +
-        "<strong>Glider:</strong> " + glider;
-}
-</script>
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Snøfall & Smøring AS</p>
+  </footer>
 
 </body>
 </html>
