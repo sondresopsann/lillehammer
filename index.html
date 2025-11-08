@@ -5,175 +5,82 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Skismøring Guide</title>
 <style>
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: Arial, sans-serif;
-    background: #f0f8ff;
-    margin: 0;
-    padding: 0;
-    color: #333;
-    line-height: 1.6;
-  }
-
-  header {
-    background: #0077b6;
-    color: white;
-    text-align: center;
-    padding: 1.5rem;
-  }
-  header h1 { margin: 0; font-size: 2rem; transition: color 0.3s; }
-  header h1:hover { color: #ffd700; }
-
-  nav { text-align: center; margin-top: 0.5rem; }
-  nav a {
-    margin: 0 1rem;
-    font-weight: bold;
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  nav a:hover { color: #ffd700; }
-
-  main {
-    max-width: 900px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
-  }
-
-  section {
-    margin-bottom: 3rem;
-    padding: 1.5rem;
-    border-radius: 8px;
-    background-color: #e0f7fa;
-    transition: background-color 0.3s;
-  }
-  section:hover { background-color: #b2ebf2; }
-
-  h2 { color: #0077b6; margin-bottom: 0.8rem; transition: color 0.3s; }
-  h2:hover { color: #023e8a; }
-
-  select, button {
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  button {
-    background: #0077b6;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  button:hover { background: #023e8a; }
-
-  .result {
-    margin-top: 1rem;
-    padding: 1rem;
-    background: #caf0f8;
-    border-left: 5px solid #0077b6;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-  .result:hover { background-color: #ade8f4; }
-
-  ol, ul { margin-left: 1.5rem; }
+  body { font-family: sans-serif; background: #eef; margin:0; padding:10px; }
+  h1 { color: #0077b6; }
+  section { background: #ddf; padding:10px; margin:10px 0; }
+  select, button { padding:5px; margin:5px 0; }
+  .result { background: #cce; padding:10px; margin-top:10px; }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>Interaktiv Skismøring Guide</h1>
-  <nav>
-    <a href="#valg">Velg forhold</a>
-    <a href="#instruksjoner">Instruksjoner</a>
-    <a href="#tips">Tips</a>
-  </nav>
-</header>
+<h1>Skismøring Guide</h1>
 
-<main>
-  <!-- Seksjon 1: Velg forhold -->
-  <section id="valg">
-    <h2>Velg temperatur, stil og snøtype</h2>
-    <label for="temperature">Temperatur:</label>
-    <select id="temperature" onchange="updateInstructions()">
-      <option value="">Velg</option>
-      <option value="cold">Under -5°C</option>
-      <option value="medium">-5°C til 0°C</option>
-      <option value="warm">0°C og varmere</option>
-    </select>
-    <br>
-    <label for="style">Skistil:</label>
-    <select id="style" onchange="updateInstructions()">
-      <option value="">Velg</option>
-      <option value="classic">Klassisk</option>
-      <option value="freestyle">Fristil</option>
-    </select>
-    <br>
-    <label for="snow">Snøtype:</label>
-    <select id="snow" onchange="updateInstructions()">
-      <option value="">Velg</option>
-      <option value="dry">Tørr/snøkrystaller</option>
-      <option value="wet">Våt/finkornet</option>
-      <option value="icy">Isete/hardpakket</option>
-    </select>
-  </section>
+<section>
+  <h2>Velg forhold</h2>
+  <label>Temperatur:</label>
+  <select id="temp" onchange="oppdater()">
+    <option value="">Velg</option>
+    <option value="cold">Under -5°C</option>
+    <option value="medium">-5°C til 0°C</option>
+    <option value="warm">0°C og varmere</option>
+  </select>
+  <br>
+  <label>Skistil:</label>
+  <select id="stil" onchange="oppdater()">
+    <option value="">Velg</option>
+    <option value="classic">Klassisk</option>
+    <option value="freestyle">Fristil</option>
+  </select>
+  <br>
+  <label>Snøtype:</label>
+  <select id="sno" onchange="oppdater()">
+    <option value="">Velg</option>
+    <option value="dry">Tørr/snøkrystaller</option>
+    <option value="wet">Våt/finkornet</option>
+    <option value="icy">Isete/hardpakket</option>
+  </select>
+</section>
 
-  <!-- Seksjon 2: Instruksjoner -->
-  <section id="instruksjoner">
-    <h2>Smøringsinstruksjoner</h2>
-    <div class="result" id="result">
-      Velg temperatur, stil og snøtype for å se instruksjoner.
-    </div>
-  </section>
-
-  <!-- Seksjon 3: Tips -->
-  <section id="tips">
-    <h2>Ekstra tips</h2>
-    <ul>
-      <li>Test skiene på et lite snøområde først.</li>
-      <li>Oppbevar skiene tørre og smør regelmessig.</li>
-      <li>Justér smøringen etter forholdene og temperaturen.</li>
-    </ul>
-  </section>
-</main>
+<section>
+  <h2>Instruksjoner</h2>
+  <div class="result" id="result">Velg alle alternativer for å se instruksjoner.</div>
+</section>
 
 <script>
-function updateInstructions() {
-  const temp = document.getElementById('temperature').value;
-  const style = document.getElementById('style').value;
-  const snow = document.getElementById('snow').value;
-  const resultDiv = document.getElementById('result');
+function oppdater(){
+  let temp = document.getElementById('temp').value;
+  let stil = document.getElementById('stil').value;
+  let sno = document.getElementById('sno').value;
+  let res = document.getElementById('result');
 
-  if(!temp || !style || !snow) {
-    resultDiv.innerHTML = 'Vennligst velg alle alternativer først.';
+  if(!temp || !stil || !sno){
+    res.innerHTML = "Velg alle alternativer først.";
     return;
   }
 
-  let instructions = '';
+  let tekst = "";
 
-  // Glider basert på temperatur
-  if(temp === 'cold') instructions += '<p>Bruk kaldglider for temperatur under -5°C.</p>';
-  else if(temp === 'medium') instructions += '<p>Bruk universalglider for -5°C til 0°C.</p>';
-  else instructions += '<p>Bruk varmglider for 0°C og høyere.</p>';
+  if(temp=="cold") tekst += "<p>Bruk kaldglider under -5°C.</p>";
+  else if(temp=="medium") tekst += "<p>Bruk universalglider -5°C til 0°C.</p>";
+  else tekst += "<p>Bruk varmglider 0°C og høyere.</p>";
 
-  // Skistil
-  if(style === 'classic') instructions += '<p>Klassisk ski: Husk festevoks eller klister i smøresonen.</p>';
-  else instructions += '<p>Fristil: Smør hele sålen med glider, ingen festevoks.</p>';
+  if(stil=="classic") tekst += "<p>Klassisk: bruk festevoks eller klister i smøresonen.</p>";
+  else tekst += "<p>Fristil: smør hele sålen med glider.</p>";
 
-  // Snøtype
-  if(snow === 'dry') instructions += '<p>Tørr snø: Glideren bør poleres lett for optimal glid.</p>';
-  else if(snow === 'wet') instructions += '<p>Våt/finkornet snø: Bruk klister i festesonen og poler glideren godt.</p>';
-  else instructions += '<p>Isete/hardpakket: Bruk hardere glider og sjekk at sålen er glatt.</p>';
+  if(sno=="dry") tekst += "<p>Tørr snø: poler glideren lett.</p>";
+  else if(sno=="wet") tekst += "<p>Våt snø: bruk klister og poler godt.</p>";
+  else tekst += "<p>Isete/hardpakket: bruk hardere glider.</p>";
 
-  // Trinn-for-trinn påføring
-  instructions += '<p>Trinn-for-trinn påføring:</p><ol>';
-  instructions += '<li>Rengjør skien for gammel smøring og skitt.</li>';
-  instructions += '<li>Påfør glider jevnt over sålen med smørjern eller børste.</li>';
-  instructions += '<li>La smøringen avkjøles noen minutter.</li>';
-  instructions += '<li>Børst skien for å fjerne overflødig glider og sikre god glid.</li>';
-  if(style === 'classic') instructions += '<li>Smør festesonen med klister eller festevoks.</li>';
-  instructions += '</ol>';
+  tekst += "<p>Trinn-for-trinn:</p><ol>";
+  tekst += "<li>Rengjør skien for gammel smøring.</li>";
+  tekst += "<li>Smør glider jevnt over sålen.</li>";
+  tekst += "<li>La det avkjøle.</li>";
+  tekst += "<li>Børst av overflødig glider.</li>";
+  if(stil=="classic") tekst += "<li>Smør festesonen med klister/voks.</li>";
+  tekst += "</ol>";
 
-  resultDiv.innerHTML = instructions;
+  res.innerHTML = tekst;
 }
 </script>
 
