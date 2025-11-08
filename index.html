@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SWIX Smøring & Glider Guide</title>
+
+<style>
+    body {
+        background-color: #111;
+        font-family: Arial, sans-serif;
+        color: white;
+        text-align: center;
+        padding: 30px;
+    }
+
+    h1 {
+        color: #ff3b3b;
+        letter-spacing: 1px;
+        font-weight: 700;
+        margin-bottom: 25px;
+    }
+
+    select, button {
+        width: 250px;
+        padding: 12px;
+        margin: 8px;
+        background: #222;
+        border: 1px solid #ff3b3b;
+        border-radius: 6px;
+        color: white;
+        font-size: 15px;
+    }
+
+    button {
+        cursor: pointer;
+        background: #ff3b3b;
+        font-weight: bold;
+        transition: 0.25s;
+    }
+
+    button:hover {
+        background: #ff6b6b;
+    }
+
+    .result-box {
+        margin-top: 35px;
+        padding: 18px;
+        background: #1a1a1a;
+        border-left: 5px solid #ff3b3b;
+        width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        font-size: 18px;
+        border-radius: 4px;
+        display: none;
+    }
+</style>
+
+</head>
+<body>
+
+<h1>SWIX SMØRING & GLIDER GUIDE</h1>
+
+<select id="skitype">
+    <option>Klassisk</option>
+    <option>Skate</option>
+</select><br>
+
+<select id="temp">
+    <option>Under -12°C</option>
+    <option>-12°C til -6°C</option>
+    <option>-6°C til -1°C</option>
+    <option>-1°C til +3°C</option>
+    <option>Over +3°C</option>
+</select><br>
+
+<select id="sno">
+    <option>Fersk snø</option>
+    <option>Kompakt snø</option>
+    <option>Iset/hard snø</option>
+</select><br>
+
+<button onclick="velg()">Velg smøring & glider</button>
+
+<div class="result-box" id="result"></div>
+
+<script>
+function velg() {
+    let skitype = document.getElementById("skitype").value;
+    let temp = document.getElementById("temp").value;
+    let sno = document.getElementById("sno").value;
+
+    // Swix Glider
+    let glider = {
+        "Under -12°C": "Swix PS5 (Turkis)",
+        "-12°C til -6°C": "Swix PS6 (Blå)",
+        "-6°C til -1°C": "Swix PS7 (Fiolett)",
+        "-1°C til +3°C": "Swix PS8 (Rød)",
+        "Over +3°C": "Swix PS10 (Gul)"
+    }[temp];
+
+    let smor;
+
+    if (skitype === "Skate") {
+        smor = "Ingen feste nødvendig (Skate)";
+    } else {
+        if (sno === "Fersk snø") {
+            if (temp === "Under -12°C" || temp === "-12°C til -6°C") smor = "Swix V40 Blå Extra";
+            else if (temp === "-6°C til -1°C") smor = "Swix V45 Violet Special";
+            else smor = "Swix V55 Red Special";
+        } 
+        else if (sno === "Kompakt snø") {
+            if (temp === "Under -12°C" || temp === "-12°C til -6°C") smor = "Swix V30 Blå";
+            else if (temp === "-6°C til -1°C") smor = "Swix V45 Violet Special";
+            else smor = "Swix KX35 Violet Klister";
+        } 
+        else {
+            if (temp === "Under -12°C" || temp === "-12°C til -6°C") smor = "Swix KX20 Baseklister";
+            else if (temp === "-6°C til -1°C") smor = "Swix KX30 Ice Klister";
+            else smor = "Swix KX75 Red Ice Klister";
+        }
+    }
+
+    document.getElementById("result").style.display = "block";
+    document.getElementById("result").innerHTML =
+        "<strong>Smøring:</strong> " + smor + "<br>" +
+        "<strong>Glider:</strong> " + glider;
+}
+</script>
+
+</body>
+</html>
