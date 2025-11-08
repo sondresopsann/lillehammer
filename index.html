@@ -1,158 +1,163 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skismøring Guide</title>
-  <style>
-    /* ====== Generell stil ====== */
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background-color: #f0f8ff;
-      color: #333;
-    }
-
-    /* ====== Header ====== */
-    header {
-      background-color: #0077b6;
-      color: white;
-      padding: 1.5rem 2rem;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-      transition: color 0.3s;
-    }
-    header h1:hover {
-      color: #ffd700;
-    }
-
-    /* ====== Navigasjon ====== */
-    nav {
-      text-align: center;
-      margin-top: 0.5rem;
-    }
-    nav a {
-      margin: 0 1rem;
-      font-weight: bold;
-      color: white;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #ffd700;
-    }
-
-    /* ====== Seksjoner ====== */
-    main {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 2rem;
-    }
-    section {
-      margin-bottom: 3rem;
-      padding: 1.5rem;
-      border-radius: 8px;
-      background-color: #e0f7fa;
-      transition: background-color 0.3s;
-    }
-    section:hover {
-      background-color: #b2ebf2;
-    }
-    h2 {
-      color: #0077b6;
-      margin-bottom: 0.8rem;
-      transition: color 0.3s;
-    }
-    h2:hover {
-      color: #023e8a;
-    }
-    ul, ol {
-      margin-left: 1.5rem;
-    }
-
-    /* ====== Tips-boks ====== */
-    .tips {
-      background-color: #caf0f8;
-      padding: 1rem;
-      border-left: 5px solid #0077b6;
-      margin: 1rem 0;
-      transition: background-color 0.3s;
-    }
-    .tips:hover {
-      background-color: #ade8f4;
-    }
-
-    /* ====== Footer ====== */
-    footer {
-      background-color: #0077b6;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interaktiv Skismøring Guide</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f8ff;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.6;
+  }
+  header {
+    background: #0077b6;
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 2rem;
+  }
+  main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+  }
+  section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #e0f7fa;
+    border-radius: 8px;
+  }
+  h2 {
+    color: #0077b6;
+  }
+  select {
+    padding: 0.5rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+  button {
+    padding: 0.5rem 1rem;
+    background: #0077b6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #023e8a;
+  }
+  .result {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #caf0f8;
+    border-left: 5px solid #0077b6;
+    border-radius: 5px;
+  }
+</style>
 </head>
 <body>
 
 <header>
-  <h1>Guide til Skismøring og Glidere</h1>
-  <nav>
-    <a href="#behov">Hva du trenger</a>
-    <a href="#smoring">Hvordan smøre</a>
-    <a href="#tips">Tips</a>
-  </nav>
+  <h1>Interaktiv Skismøring Guide</h1>
 </header>
 
 <main>
-  <!-- Seksjon 1: Hva du trenger -->
-  <section id="behov">
-    <h2>Hva du trenger</h2>
-    <ul>
-      <li>Skismøringsprodukter (glider for klassisk eller fristil)</li>
-      <li>Børste og/eller smørjern</li>
-      <li>Rengjøringsklut / fiberlene</li>
-      <li>Eventuelt klister for feste-soner (klassisk ski)</li>
-    </ul>
-  </section>
+  <section>
+    <h2>Velg forholdene</h2>
+    <label for="temperature">Temperatur:</label>
+    <select id="temperature">
+      <option value="">Velg</option>
+      <option value="cold">Under -5°C</option>
+      <option value="medium">-5°C til 0°C</option>
+      <option value="warm">0°C og varmere</option>
+    </select>
+    <br>
+    <label for="style">Skistil:</label>
+    <select id="style">
+      <option value="">Velg</option>
+      <option value="classic">Klassisk</option>
+      <option value="freestyle">Fristil</option>
+    </select>
+    <br>
+    <label for="snow">Snøtype:</label>
+    <select id="snow">
+      <option value="">Velg</option>
+      <option value="dry">Tørr/snøkrystaller</option>
+      <option value="wet">Våt/finkornet</option>
+      <option value="icy">Isete/hardpakket</option>
+    </select>
+    <br>
+    <button onclick="showInstructions()">Vis smøring</button>
 
-  <!-- Seksjon 2: Hvordan påføre glider -->
-  <section id="smoring">
-    <h2>Hvordan påføre glider</h2>
-    <ol>
-      <li>Rengjør sålen på skien med fiberlene eller klut for å fjerne gammel smøring og skitt.</li>
-      <li>Velg riktig glider for dagens temperatur og snøtype.</li>
-      <li>Smelt glideren forsiktig med smørjern og fordel jevnt over hele sålen.</li>
-      <li>La smøringen avkjøles i noen minutter.</li>
-      <li>Børst skien for å fjerne overflødig glider og sikre jevn glid.</li>
-    </ol>
-  </section>
-
-  <!-- Seksjon 3: Tips -->
-  <section id="tips">
-    <h2>Ekstra tips for klassisk ski</h2>
-    <div class="tips">
-      <ul>
-        <li>Bruk klister eller festevoks i smøresonen dersom snøen er våt eller finkornet.</li>
-        <li>Smør festesonen tynt og jevnt for best feste uten å miste glid.</li>
-        <li>Oppbevar skiene tørre og smør regelmessig for langvarig glid.</li>
-        <li>Test skiene på et lite snøområde først for å være sikker på at glideren passer forholdene.</li>
-      </ul>
-    </div>
+    <div class="result" id="result" style="display:none;"></div>
   </section>
 </main>
 
-<footer>
-  <p>© 2025 Skismøring AS</p>
-</footer>
+<script>
+function showInstructions() {
+  const temp = document.getElementById('temperature').value;
+  const style = document.getElementById('style').value;
+  const snow = document.getElementById('snow').value;
+  const resultDiv = document.getElementById('result');
+
+  if (!temp || !style || !snow) {
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = 'Vennligst velg alle alternativer først.';
+    return;
+  }
+
+  let instructions = '<h3>Smøringsinstruksjoner:</h3>';
+
+  // Bestem glider basert på temperatur
+  if (temp === 'cold') {
+    instructions += '<p>Bruk kaldglider for temperatur under -5°C.</p>';
+  } else if (temp === 'medium') {
+    instructions += '<p>Bruk universalglider for -5°C til 0°C.</p>';
+  } else {
+    instructions += '<p>Bruk varmglider for 0°C og høyere.</p>';
+  }
+
+  // Skistil tips
+  if (style === 'classic') {
+    instructions += '<p>Klassisk ski: Husk festevoks eller klister i smøresonen.</p>';
+  } else {
+    instructions += '<p>Fristil: Smør hele sålen med glider, ingen festevoks.</p>';
+  }
+
+  // Snøtype tips
+  if (snow === 'dry') {
+    instructions += '<p>Tørr snø: Glideren bør poleres lett for optimal glid.</p>';
+  } else if (snow === 'wet') {
+    instructions += '<p>Våt/finkornet snø: Bruk klister i festesonen og poler glideren godt.</p>';
+  } else {
+    instructions += '<p>Isete/hardpakket: Bruk hardere glider og sjekk at sålen er glatt.</p>';
+  }
+
+  instructions += '<p>Trinn-for-trinn påføring:</p>';
+  instructions += '<ol>';
+  instructions += '<li>Rengjør skien for gammel smøring og skitt.</li>';
+  instructions += '<li>Påfør glider jevnt over sålen med smørjern eller børste.</li>';
+  instructions += '<li>La smøringen avkjøles noen minutter.</li>';
+  instructions += '<li>Børst skien for å fjerne overflødig glider og sikre god glid.</li>';
+  if (style === 'classic') {
+    instructions += '<li>Smør festesonen med klister eller festevoks.</li>';
+  }
+  instructions += '</ol>';
+
+  resultDiv.style.display = 'block';
+  resultDiv.innerHTML = instructions;
+}
+</script>
 
 </body>
 </html>
+
 
 
